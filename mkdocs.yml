@@ -1,5 +1,130 @@
+#[Info]
 site_name: My Notes
-#site_url: notes.fffmath.com
+site_url: https://notes.fffmath.com
 site_author: fffmath
+#[UI]
 theme:
   name: material 
+  custom_dir: docs/overrides
+  # custom_dir: material/.overrides
+  # font:
+  #   text: Bitter
+  #   code: Roboto Mono
+  logo: assets/img/myavatar-fotor-150.png
+    # material/library
+    # admonition:
+    #   <type>: material/file-alert-outline
+
+  favicon: assets/img/myavatar-fotor-150.png
+
+  palette:
+
+    - media: "(prefers-color-scheme: light)"
+      scheme: default # Day mode
+      primary: blue # Top bar
+      accent: indigo # Highlight color for links and interactive elements
+      # teal 
+      toggle:
+        icon: material/toggle-switch # Icon
+        name: Switch to Night Mode # Tooltip on mouse hover
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate # Night mode
+      primary: black 
+      accent: indigo
+      # teal
+      toggle:
+        icon: material/toggle-switch-off-outline
+        name: Switch to Day Mode
+  features: 
+    - announce.dismiss # Present temporary announcements that can be marked as read by the user, may contain a button to dismiss the current announcement
+    # - navigation.instant 
+    #- header.autohide  # Auto hide
+    - navigation.tracking # The URL in the address bar will automatically update to the active anchor highlighted in the directory
+    - navigation.tabs # The top-level sections will be presented in a menu layer beneath the viewport title, but remain unchanged on mobile devices
+    # - navigation.tabs.sticky  # With sticky tabs enabled, navigation tabs will be locked below the title and remain visible when scrolling down
+    - navigation.sections # With sections enabled, top-level sections are presented as groups in the sidebar for viewports wider than 1220px, but remain unchanged on mobile devices
+    - navigation.top # Button to return to the top, appears on upward scroll
+    - navigation.footer # The footer will be presented in the sidebar, but remain unchanged on mobile devices
+    - search.suggest # Suggest completing the entire word as you type in the search input
+    - search.highlight # Highlight keywords in search results
+    - search.share # Search share button
+    - navigation.expand # Expand all contents of the left catalog when opening Tab
+    - navigation.indexes # After enabling section indexes, documents can be directly appended to sections
+    - content.tabs.link
+    - content.tooltips
+    - content.code.copy
+    - content.action.edit
+    - content.action.view
+    - content.code.annotate 
+  language: zh # Some prompts will turn into Chinese
+
+
+  icon:
+    repo: fontawesome/brands/github # Top right corner icon
+edit_uri: edit/main/docs # Link for edit button 
+repo_url: https://github.com/fffmath/mynotes # Link when clicked at the top right corner
+repo_name: MyNotes # Name at the top right corner
+
+# [Navigtion]
+nav: # Navigation
+  - Home: index.md
+  - Cryptography:
+    - Notes on "A Graduate Course in Applied Cryptography":
+      - Chapter 10 (Public key tools): blog/bs-cryptography/chapter10.md
+      - Chapter 18 (Protocols for identification and login): blog/bs-cryptography/chapter18.md
+      - Chpater 19 (Identification and signatures from sigma protocols): blog/bs-cryptography/chapter19.md
+    - How to learn Dilithium?:
+      - Schnorr signature: blog/dilithium/schnorr.md
+      - Fiat-Shamir Transformation: blog/dilithium/fstransform.md
+      - NTT (Number Theoretic Transform): blog/dilithium/ntt.md
+      - Rejection Sampling: blog/dilithium/sampling.md
+
+copyright: Copyright &copy; 2024 fffmath. Hosted by Vercel. # Copyright statement
+
+
+extra:
+  # tags:
+  #   HTML5: html
+  #   JavaScript: js
+  #   CSS: css
+  generator: true  #Remove the "Powered by MkDocs Material" in the footer
+  social:
+    - icon: fontawesome/brands/x-twitter 
+      link: https://twitter.com/fffmath_crypto
+    - icon: fontawesome/brands/github
+      link: https://github.com/fffmath
+    - icon: fontawesome/regular/envelope
+      link: mailto:<fengyansong@amss.ac.cn> #Contact
+
+plugins:
+  # - glightbox
+  - search
+  - blog:
+      post_date_format: full #Time
+      draft: true
+      draft_if_future_date: true #Automatically mark posts with future dates as drafts
+      post_readtime: true
+      post_readtime_words_per_minute: 265  #Estimated number of words per minute the reader will read when calculating the reading time of a post
+      post_url_format: "{date}/{slug}"
+      categories_slugify: !!python/object/apply:pymdownx.slugs.slugify
+        kwds:
+          case: lower
+      # categories_toc: true
+      # pagination_per_page: 5
+      pagination_url_format: "page/{page}"
+      authors_file: "{blog}/.authors.yml"  #Author information
+  - tags:
+      tags_file: tag.md  #Category tags
+
+markdown_extensions:
+  - abbr
+  - attr_list
+  - admonition
+  - def_list
+  - footnotes
+  - md_in_html
+  - meta # Supports custom header tags and other features above Markdown files
+  - pymdownx.caret
+  - pymdownx.betterem
+  - pymdownx.critic
+  - pymdownx.details

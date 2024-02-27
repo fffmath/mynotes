@@ -1,0 +1,5 @@
+site_name: My Notes
+#site_url: notes.fffmath.com
+site_author: fffmath
+theme:
+  name: material 

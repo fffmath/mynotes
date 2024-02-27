@@ -5,8 +5,7 @@ site_author: fffmath
 #[UI]
 theme:
   name: material 
-  custom_dir: docs/overrides
-  # custom_dir: material/.overrides
+  #custom_dir: docs/overrides
   # font:
   #   text: Bitter
   #   code: Roboto Mono

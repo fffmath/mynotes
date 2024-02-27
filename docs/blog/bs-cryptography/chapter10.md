@@ -10,6 +10,7 @@ comments: false
 
 ## Anonymous key exchange
 本书是现代密码学的教材，因此采用基于game的语言去描述/定义安全性。
+
 **Attack Game 10.1** (Anonymous key exchange)
 
 对于一个密钥交换协议 $P = (A, B)$，以及给定的对手 $A$，攻击游戏的运行如下：
@@ -27,13 +28,17 @@ comments: false
 
 ## One-way trapdoor functions
 **Definition 10.2**
-- x和y所在的集合不一定一样，当x和y所在的集合一样的时候对应的One-way function实际上是permutation (置换)。
+
+!!! note
+    x和y所在的集合不一定一样，当x和y所在的集合一样的时候对应的One-way function实际上是permutation (置换)。
+
 ## A trapdoor permutation scheme baesd on RSA
 目前RSA基本上是唯一已知的合理的候选trapdoor permutation方案, 还有一些其他方案，但它们可以看作是RSA的变体。
 
 对于每个固定的 $pk = (n, e)$，函数 $F(pk, \cdot)$ 将 $\mathbb{Z}_n$ 映射到 $\mathbb{Z}_n$；因此，这个函数的定义域和值域实际上随 $pk$ 变化。然而，在我们对trapdoor permutation scheme的定义中，不允许函数的定义域和值域随公钥变化而变化。因此，事实上，这个方案并不完全满足trapdoor permutation scheme的形式语法要求。但是可以很容易地推广陷阱置换方案的定义，以允许这种情况发生。在这里我们不打算这样做而是通过下面的习题探讨了一种基于RSA构建适当的trapdoor permutation scheme的想法。
 
 **Exercise (A proper trapdoor permutation scheme based on RSA)**
+
 如上述所讨论的，我们基于RSA的陷阱置换方案并不完全满足我们的定义，简单地因为它作用的域随公钥而变化。现在设 $l$ 和 $e$ 是用于RSA密钥生成的参数，设 $G$ 是密钥生成算法，输出一对 $(pk, sk)$。回忆一下，$pk = (n, e)$，其中 $n$ 是RSA模数，是两个 $l$-bit 素数的乘积，$e$ 是加密指数。密钥是 $sk = (n, d)$，其中 $d$ 是对应于加密指数 $e$ 的解密指数。选择一个参数 $L$，它远远大于 $2l$，使得 $n/2^L$ 是可以忽略不计的。令 $X$ 是范围为 $[0, 2^L)$ 内的整数集合。我们将呈现一个陷阱置换方案 $(G, F^{*}, I^{*})$，定义在 $X$ 上。函数 $F^{*}$ 接受两个输入：如上所述的公钥 $pk$ 和一个整数 $x \in X$，并输出一个整数 $y \in X$，计算如下。将 $x$ 除以 $n$，得到整数商 $Q$ 和余数 $R$，使得 $x = nQ + R$，且 $0 \leq R < n$。如果 $Q > 2^L/n - 1$，则设置 $S := R$；否则，设置 $S := R^e \mod n$。最后，设置 $y := nQ + S$。
 
 - (a) 证明 $F^*(pk, \cdot)$ 是 $X$ 上的一个置换，并给出一个满足对所有 $x \in X$ 都有 $I^*(sk, F^*(pk, x)) = x$ 的高效的求逆的函数 $I^{*}$。
